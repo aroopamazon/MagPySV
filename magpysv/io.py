@@ -562,7 +562,7 @@ def combine_csv_data(*, start_date, end_date, sampling_rate='MS',
             model_mf_data = pd.merge(
                 left=model_mf_data, right=model_mf_data_temp,
                 how='left', on='date')
-    if day_of_month is not 1:
+    if day_of_month != 1:
         model_sv_data['date'] = model_sv_data['date'].apply(
             lambda dt: dt.replace(day=day_of_month))
         model_mf_data['date'] = model_sv_data['date']
