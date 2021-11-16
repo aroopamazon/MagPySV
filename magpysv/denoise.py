@@ -226,9 +226,7 @@ def eigenvalue_analysis(*, dates, obs_data, model_data, residuals,
     if proxy_number == 1:
         noisy_direction = eig_vectors[:, 0]
         proxy = projected_residuals[:, 0]
-        for idx in range(len(proxy)):
-            corrected_residuals.append(
-                masked_residuals.data[idx, :] - proxy[idx] * noisy_direction)
+        corrected_residuals = [masked_residuals.data[idx, :] - proxy[idx] * noisy_direction for idx in range(len(proxy)) ]
     elif proxy_number > 1:
         noisy_direction = eig_vectors[:, 0:proxy_number]
         proxy = np.sum(projected_residuals[:, 0:proxy_number], axis=1)
